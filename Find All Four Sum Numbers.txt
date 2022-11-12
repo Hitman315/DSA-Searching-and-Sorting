@@ -1,0 +1,83 @@
+Method 1: 
+
+class Solution{
+    public:
+    // arr[] : int input array of integers
+    // k : the quadruple sum required
+    vector<vector<int> > fourSum(vector<int> &arr, int k) {
+        // Your code goes here
+        
+        vector<vector<int>>total;
+        sort(arr.begin(),arr.end());
+        set<vector<int>>s;
+        int n=arr.size();
+        for(int i=0;i<n-3;i++){
+            for(int j=i+1;j<n-2;j++){
+            int low=j+1;
+            int high=n-1;
+            while(low<high){
+                if(arr[low]+arr[high]+arr[i]+arr[j]==k){
+                vector<int>v;
+                v.push_back(arr[i]);
+                v.push_back(arr[j]);
+                v.push_back(arr[low]);
+                v.push_back(arr[high]);
+                s.insert(v);
+               
+                low++;
+                high--;
+            }
+            else if(arr[low]+arr[high]+arr[i]+arr[j]<k){
+                low++;
+            }else if(arr[low]+arr[high]+arr[i]+arr[j]>k)
+            high--;
+        }
+                }
+        }
+        for(auto it:s)
+         total.push_back(it);
+        return total;
+    }
+};
+
+
+Method 2:
+
+
+class Solution{
+    public:
+    // arr[] : int input array of integers
+    // k : the quadruple sum required
+    vector<vector<int> > fourSum(vector<int> &arr, int k) {
+        // Your code goes here
+        
+        vector<vector<int>>total;
+        sort(arr.begin(),arr.end());
+        int n=arr.size();
+        for(int i=0;i<n-3;i++){
+            for(int j=i+1;j<n-2;j++){
+            int low=j+1;
+            int high=n-1;
+            while(low<high){
+                if(arr[low]+arr[high]+arr[i]+arr[j]==k){
+                vector<int>v;
+                v.push_back(arr[i]);
+                v.push_back(arr[j]);
+                v.push_back(arr[low]);
+                v.push_back(arr[high]);
+                total.push_back(v);
+                low++;
+                high--;
+            }
+            else if(arr[low]+arr[high]+arr[i]+arr[j]<k){
+                low++;
+            }else if(arr[low]+arr[high]+arr[i]+arr[j]>k)
+            high--;
+        }
+                }
+        }
+        sort(total.begin(), total.end());
+        total.erase(unique(total.begin(), total.end()), total.end());
+        return total;
+        }
+};

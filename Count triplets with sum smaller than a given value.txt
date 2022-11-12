@@ -1,0 +1,28 @@
+        public:
+	long long countTriplets(long long arr[], int n, long long sum)
+	{
+	    // Your code goes here
+        sort(arr,arr+n);
+       long long count=0;
+        for(int i=0;i<n-2;i++){
+                long long low=i+1,high=n-1,total=sum-arr[i];
+               
+                while(low<high){
+                    if(arr[low]+arr[high]<total){
+                   count+=(high-low);
+                    
+                   
+                        low++;
+                    }
+                    else if(arr[low]+arr[high]>=total){
+                        high--;
+                    }
+                    
+            
+                }
+    }
+        return count;
+	}
+		 
+
+};
